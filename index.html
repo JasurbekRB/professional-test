@@ -1,173 +1,50 @@
-
 <!doctype html>
 <html lang="uz">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kompyuter fanlari bo‘yicha interaktiv test platformasi.">
+  <meta name="description" content="Kompyuter fanlari bo‘yicha 14 mavzuli interaktiv test platformasi.">
   <meta name="theme-color" content="#0b1020">
   <title>ProTest — Bilimingizni sinang</title>
-
   <link rel="stylesheet" href="style.css">
   <script src="questions.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
-
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
   <header class="topbar">
-    <a class="brand" href="#home" aria-label="ProTest bosh sahifa">
-      <span class="brand-mark">P</span>
-      <span>Pro<span class="brand-accent">Test</span></span>
-    </a>
-
-    <div class="topbar-right">
-      <span class="live-dot"></span>
-      <span>Interaktiv test platformasi</span>
-    </div>
+    <a class="brand" href="#home" aria-label="ProTest bosh sahifa"><span class="brand-mark">P</span><span>Pro<span class="brand-accent">Test</span></span></a>
+    <div class="topbar-right"><span class="live-dot"></span><span>Interaktiv test platformasi</span></div>
   </header>
-
   <main class="container" id="home">
-
     <section class="hero" id="hero">
-      <div class="eyebrow">
-        <span class="eyebrow-line"></span>
-        BILIMINGIZNI SINAB KO‘RING
-      </div>
-
+      <div class="eyebrow"><span class="eyebrow-line"></span> BILIMINGIZNI SINAB KO‘RING</div>
       <h1>Bilimingizni <span>keyingi bosqichga</span> olib chiqing.</h1>
-
-      <p class="hero-copy">
-        Kompyuter fanlarining 14 ta yo‘nalishi bo‘yicha testlarni ishlang,
-        natijangizni kuzating va o‘z ustingizda ishlang.
-      </p>
-
+      <p class="hero-copy">Kompyuter fanlarining 14 ta yo‘nalishi bo‘yicha testlarni ishlang, natijangizni kuzating va o‘z ustingizda ishlang.</p>
       <div class="stats-row">
-        <div class="stat">
-          <strong id="totalQuestions">131</strong>
-          <span>ta savol</span>
-        </div>
-
-        <div class="stat-separator"></div>
-
-        <div class="stat">
-          <strong id="totalTopics">14</strong>
-          <span>ta mavzu</span>
-        </div>
-
-        <div class="stat-separator"></div>
-
-        <div class="stat">
-          <strong>100%</strong>
-          <span>bepul kirish</span>
-        </div>
+        <div class="stat"><strong id="totalQuestions">131</strong><span>ta savol</span></div><div class="stat-separator"></div>
+        <div class="stat"><strong id="totalTopics">14</strong><span>ta mavzu</span></div><div class="stat-separator"></div>
+        <div class="stat"><strong>100%</strong><span>bepul kirish</span></div>
       </div>
     </section>
-
     <section class="panel" id="topicPanel">
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow small">O‘QUV BO‘LIMI</div>
-          <h2>Mavzuni tanlang</h2>
-        </div>
-
-        <span class="count-pill" id="topicCount">14 MAVZU</span>
-      </div>
-
+      <div class="section-heading"><div><div class="eyebrow small">O‘QUV BO‘LIMI</div><h2>Mavzuni tanlang</h2></div><span class="count-pill" id="topicCount">14 MAVZU</span></div>
       <div class="topic-grid" id="topicGrid"></div>
     </section>
-
     <section class="panel quiz-panel hidden" id="quizPanel" aria-live="polite">
-      <div class="quiz-top">
-        <button class="back-button" id="backToTopics" type="button">
-          ← Mavzularga qaytish
-        </button>
-
-        <span class="count-pill" id="quizTopicLabel"></span>
-      </div>
-
-      <div class="quiz-meta">
-        <span id="questionCounter">Savol 1 / 10</span>
-        <span class="timer-pill" id="timerDisplay" role="timer">15:00</span>
-      </div>
-
-      <div class="quiz-progress-info">
-        <span id="progressLabel">Jarayon</span>
-        <span id="progressPercent">0%</span>
-      </div>
-
-      <div class="progress-track">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-
-      <div class="question-area">
-        <div class="question-tag" id="questionTag">SAVOL 01</div>
-        <h2 id="questionText">Savol matni</h2>
-        <div class="answers" id="answers"></div>
-        <p class="feedback hidden" id="feedback" role="status"></p>
-      </div>
-
-      <div class="quiz-footer">
-        <span class="keyboard-hint">Javobni tanlang va davom eting</span>
-
-        <button class="primary-button" id="checkButton" type="button" disabled>
-          Javobni tekshirish <span>→</span>
-        </button>
-      </div>
+      <div class="quiz-top"><button class="back-button" id="backToTopics">← Mavzularga qaytish</button><span class="count-pill" id="quizTopicLabel"></span></div>
+      <div class="quiz-progress-info"><span id="questionCounter">Savol 1 / 10</span><span id="progressPercent">0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="question-area"><div class="question-tag" id="questionTag">SAVOL 01</div><h2 id="questionText">Savol matni</h2><div class="answers" id="answers"></div><p class="feedback hidden" id="feedback" role="status"></p></div>
+      <div class="quiz-footer"><span class="keyboard-hint">Javobni tanlang va davom eting</span><button class="primary-button" id="checkButton" disabled>Javobni tekshirish <span>→</span></button></div>
     </section>
-
     <section class="panel result-panel hidden" id="resultPanel" aria-live="polite">
-      <div class="result-icon" id="resultIcon">✓</div>
-
-      <div class="eyebrow small centered">TEST YAKUNLANDI</div>
-
-      <h2 id="resultTitle">Ajoyib natija!</h2>
-      <p class="result-subtitle" id="resultSubtitle">Natijangiz quyida.</p>
-
-      <div class="score-circle" id="scoreCircle">
-        <div>
-          <strong id="scorePercent">0%</strong>
-          <span>to‘g‘ri javob</span>
-        </div>
-      </div>
-
-      <div class="result-stats">
-        <div>
-          <strong id="correctCount">0</strong>
-          <span>To‘g‘ri</span>
-        </div>
-
-        <div>
-          <strong id="wrongCount">0</strong>
-          <span>Noto‘g‘ri</span>
-        </div>
-
-        <div>
-          <strong id="scoreTotal">0/0</strong>
-          <span>Umumiy ball</span>
-        </div>
-      </div>
-
-      <div class="detail-results" id="detailResults"></div>
-
-      <div class="result-actions">
-        <button class="primary-button" id="retryButton" type="button">
-          Qayta ishlash ↻
-        </button>
-
-        <button class="secondary-button" id="topicsButton" type="button">
-          Boshqa mavzu tanlash
-        </button>
-      </div>
+      <div class="result-icon" id="resultIcon">✓</div><div class="eyebrow small centered">TEST YAKUNLANDI</div><h2 id="resultTitle">Ajoyib natija!</h2><p class="result-subtitle" id="resultSubtitle">Natijangiz quyida.</p>
+      <div class="score-circle" id="scoreCircle"><div><strong id="scorePercent">0%</strong><span>to‘g‘ri javob</span></div></div>
+      <div class="result-stats"><div><strong id="correctCount">0</strong><span>To‘g‘ri</span></div><div><strong id="wrongCount">0</strong><span>Noto‘g‘ri</span></div><div><strong id="scoreTotal">0/0</strong><span>Umumiy ball</span></div></div>
+      <div class="result-actions"><button class="primary-button" id="retryButton">Qayta ishlash ↻</button><button class="secondary-button" id="topicsButton">Boshqa mavzu tanlash</button></div>
     </section>
-
-    <footer>
-      <span class="footer-brand">ProTest</span>
-      <span>Bilim — eng yaxshi sarmoya.</span>
-      <span id="footerYear"></span>
-    </footer>
-
+    <footer><span class="footer-brand">ProTest</span><span>Bilim — eng yaxshi sarmoya.</span><span id="footerYear"></span></footer>
   </main>
 </body>
 </html>
