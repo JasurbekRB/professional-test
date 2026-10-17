@@ -125,25 +125,29 @@
     return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
   }
 
-  function startTimer() {
-    stopTimer();
-    secondsLeft = TEST_DURATION;
+ 
+function startTimer() {
+  stopTimer();
+
+  secondsLeft = 15 * 60;
+  updateTimer();
+
+  timer = window.setInterval(() => {
+    if (finished) {
+      stopTimer();
+      return;
+    }
+
+    secondsLeft = Math.max(0, secondsLeft - 1);
     updateTimer();
 
-    timer = setInterval(() => {
-      if (finished) {
-        stopTimer();
-        return;
-      }
+    if (secondsLeft === 0) {
+      stopTimer();
+      finishTest(true);
+    }
+  }, 1000);
+}
 
-      secondsLeft--;
-      updateTimer();
-
-      if (secondsLeft <= 0) {
-        stopTimer();
-        finishTest(true);
-      }
-    }, 1000);
   }
 
   function updateTimer() {
