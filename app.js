@@ -553,7 +553,7 @@
   renderTopics();
   showView('topics');
 })();
-```els.adminResults.innerHTML = results.length
+els.adminResults.innerHTML = results.length
       ? [...results].reverse().map(item => `
           <tr>
             <td>${escapeHTML(item.firstName)} ${escapeHTML(item.lastName)}</td>
