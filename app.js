@@ -493,7 +493,67 @@
       </div>
     `;
 
+    ```javascript
     els.adminResults.innerHTML = results.length
+      ? [...results].reverse().map(item => `
+          <tr>
+            <td>${escapeHTML(item.firstName)} ${escapeHTML(item.lastName)}</td>
+            <td>${escapeHTML(item.group)}</td>
+            <td>${escapeHTML(item.topic)}</td>
+            <td>${item.correct}/${item.total} (${item.percent}%)</td>
+            <td>${new Date(item.date).toLocaleDateString('uz-UZ')}</td>
+          </tr>
+        `).join('')
+      : '<tr><td colspan="5">Hozircha natija yo‘q.</td></tr>';
+  }
+
+  function exportAllResults() {
+    const results = readResults();
+    if (!results.length) {
+      alert('Hozircha saqlangan natijalar yo‘q.');
+      return;
+    }
+
+    const rows = [
+      ['Ism', 'Familiya', 'Guruh', 'Mavzu', 'To‘g‘ri', 'Jami', 'Foiz', 'Sana'],
+      ...results.map(r => [
+        r.firstName, r.lastName, r.group, r.topic,
+        r.correct, r.total, r.percent + '%', r.date
+      ])
+    ];
+
+    const csv = '\uFEFF' + rows.map(row =>
+      row.map(value =>
+        '"' + String(value ?? '').replace(/"/g, '""') + '"'
+      ).join(';')
+    ).join('\r\n');
+
+    downloadFile('protest_natijalar.csv', csv, 'text/csv;charset=utf-8');
+  }
+
+  function clearAllResults() {
+    if (!confirm('Barcha saqlangan natijalar o‘chirilsinmi?')) return;
+    saveResults([]);
+    renderAdmin();
+  }
+
+  els.adminOpen.addEventListener('click', openAdmin);
+  els.adminClose.addEventListener('click', () => showView('topics'));
+  els.checkButton.addEventListener('click', checkAnswer);
+  els.backToTopics.addEventListener('click', () => {
+    stopTimer();
+    showView('topics');
+  });
+  els.retryButton.addEventListener('click', () => startTopic(topicIndex));
+  els.topicsButton.addEventListener('click', () => showView('topics'));
+  els.saveResult.addEventListener('click', downloadCurrentResult);
+  els.exportResults.addEventListener('click', exportAllResults);
+  els.clearResults.addEventListener('click', clearAllResults);
+
+  renderTopics();
+  showView('topics');
+})();
+```els.adminResults.innerHTML = results.length
       ? [...results].reverse().map(item => `
           <tr>
             <td>${escapeHTML(item.firstName)} ${escapeHTML(item.lastName)}</td>
